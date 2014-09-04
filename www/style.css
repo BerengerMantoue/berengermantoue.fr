@@ -23,7 +23,11 @@ body
 /**/
 header
 {
-	background:-webkit-linear-gradient(#FFFFFF, #F0F0F0);
+	background: -webkit-linear-gradient(FFFFFF, #F0F0F0); /* For Safari 5.1 to 6.0 */
+	background: -o-linear-gradient(FFFFFF, #F0F0F0); /* For Opera 11.1 to 12.0 */
+	background: -moz-linear-gradient(FFFFFF, #F0F0F0); /* For Firefox 3.6 to 15 */
+	background: linear-gradient(FFFFFF, #F0F0F0); /* Standard syntax */
+	
 	padding-left:15px;
 	padding-right:15px;
 	border-bottom: 2px solid black;
