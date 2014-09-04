@@ -23,6 +23,9 @@ body
 /**/
 header
 {
+	background:-webkit-linear-gradient(#FFFFFF, #F0F0F0);
+	padding-left:15px;
+	padding-right:15px;
 	border-bottom: 2px solid black;
 	margin-bottom:35px;
 }
@@ -41,7 +44,7 @@ header h1
 nav
 {
 	display:inline-block;
-	width:686px;
+	width:650px;
 	text-align: right;
 }
 
@@ -82,6 +85,7 @@ section
 	margin:auto;
 	height: auto;
 	text-align: center;
+	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
 }
 
 #Games
