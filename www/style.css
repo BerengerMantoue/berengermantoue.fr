@@ -20,7 +20,7 @@ body
 	margin:auto;
 }
 
-/**/
+/***************** Header *****************/
 header
 {
 	background: -webkit-linear-gradient(#FFFFFF, #F0F0F0); /* For Safari 5.1 to 6.0 */
@@ -38,9 +38,11 @@ header h1
 {
 	font-size: 18px;
 	padding-left:10px;
+	color:black;
+	text-decoration:none;
 }
 
-#Logo, header h1
+header h1, img
 {
 	display:inline-block;
 }
@@ -64,16 +66,11 @@ nav li
 	display:inline-block;
 }
 
-nav ul li  a
+nav ul li a, #Current
 {
 	color:black;
 	text-decoration:none;
 	padding-left:10px;
-}
-
-#current
-{
-	text-decoration:underline;
 }
 
 nav ul li  a:hover
@@ -81,20 +78,18 @@ nav ul li  a:hover
 	text-decoration:underline;
 }
 
+/*nav ul li #Current
+{
+	font-style:bold;
+}*/
 
-/**/
+
+/***************** Content *****************/
 section
 {
 	width:850px;
 	margin:auto;
-	height: auto;
-	text-align: center;
 	box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.3);
-}
-
-section div
-{
-	display:inline-block;
 }
 
 section div h2
@@ -124,3 +119,84 @@ section img
 	margin-bottom:50px;
 	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
 }
+
+#Showcase
+{
+	height: auto;
+	text-align: center;
+}
+
+#Showcase div
+{
+	display:inline-block;
+}
+
+#About, #Contact
+{
+	width:850px;
+	height: auto;
+	margin:auto;
+	padding-top: 15px;
+	padding-bottom: 15px;
+	text-align: left;
+}
+
+#About div, #Contact div
+{
+	padding-left: 50px;
+}
+
+#About div h2
+{
+	margin-bottom:15px;
+}
+
+/*#Contact input, textarea
+{
+	text-align: right;
+}*/
+label
+{
+	display: block;
+	width: 150px;
+	float:left;
+}
+
+input, textarea
+{
+	width:600px;
+}
+
+#ButtonWraper
+{
+	position:relative;
+	padding-bottom:30px;
+}
+
+#SendButton
+{
+	width:100px;
+	height:30px;
+	position:absolute;
+	right:50px;
+	
+	color:white;
+	font-size:21px;
+	font-family:'Ostrich', 'Trebuchet MS', 'Arial';
+	
+	border:0px;
+	background-color:black;
+}
+
+#SendButton:hover
+{
+	background-color:#050505;
+}
+
+textarea
+{
+	height:150px;
+	resize:vertical;
+}
+
+/***************** Footer *****************/
