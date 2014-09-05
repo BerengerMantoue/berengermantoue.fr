@@ -131,17 +131,18 @@ section img
 	display:inline-block;
 }
 
-#About, #Contact
+#About, #Contact, #SendEmail
 {
 	width:850px;
 	height: auto;
+	min-height:300px;
 	margin:auto;
 	padding-top: 15px;
 	padding-bottom: 15px;
 	text-align: left;
 }
 
-#About div, #Contact div
+#About div, #Contact div, #SendEmail div
 {
 	padding-left: 50px;
 }

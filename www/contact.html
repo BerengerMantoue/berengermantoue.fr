@@ -24,21 +24,94 @@
 			
 			<section id="Contact">
 				<div>
-					<form method="post" action="php/contact.php">
+					<p>I still got to figure out how to add a captcha thingy.<br/>Until then, this form won't do anything, so you can contact me on berenger dot mantoue at gmail dot com.</p>
+					<form method="post" action="php/sendmail.php" onsubmit="return verifForm(this)">
 						<p>
-							<label for="prenom">Name</label>
-							<input type="text" name="prenom" id="prenom" maxlength="35" />
+							<label for="name">Name</label>
+							<input type="text" name="name" id="name" maxlength="35" onblur="verifPseudo(this)" />
 						</p>
 						<p>
 							<label for="email">Email</label>
-							<input type="email" name="email" id="email" maxlength="35" />						
+							<input type="email" name="email" id="email" maxlength="35" onblur="verifMail(this)" />						
 						</p>
 						<p>
 							<label for="message">Message</label>
-							<textarea id="message" name="message" ></textarea>						
+							<textarea id="message" name="message" onblur="verifMessage(this)" ></textarea>						
 						</p>
 						
+						<div id="ButtonWraper">
 							<input type="submit" value="Send" id="SendButton"/>
+						</div>
+						
+						<script>
+							function surligne(champ, erreur)
+							{
+							   if(erreur)
+								  champ.style.backgroundColor = "#fba";
+							   else
+								  champ.style.backgroundColor = "";
+							}
+							
+							function verifForm(f)
+							{									
+								var nameOk = verifName(f.name);
+								var mailOk = verifMail(f.email);
+								var msgOk = verifMessage(f.message);
+
+								if(nameOk && mailOk && msgOk)
+								{						
+									return true;
+								}
+								else
+								{
+									alert("Please fill in every fields.");
+									return false;
+								}
+							}
+
+							function verifName(champ)
+							{
+							   if(champ.value.length < 2 || champ.value.length > 35)
+							   {			
+								  surligne(champ, true);
+								  return false;
+							   }
+							   else
+							   {			
+								  surligne(champ, false);
+								  return true;
+							   }
+							}
+
+							function verifMessage(champ)
+							{
+							   if(champ.value.length < 15)
+							   {
+								  surligne(champ, true);
+								  return false;
+							   }
+							   else
+							   {
+								  surligne(champ, false);
+								  return true;
+							   }
+							}
+							
+							function verifMail(champ)
+							{
+							   var regex = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+							   if(!regex.test(champ.value))
+							   {
+								  surligne(champ, true);
+								  return false;
+							   }
+							   else
+							   {
+								  surligne(champ, false);
+								  return true;
+							   }
+							}
+						</script>
 					</form>
 				</div>				
 			</section>
