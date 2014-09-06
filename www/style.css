@@ -161,6 +161,8 @@ label
 	display: block;
 	width: 150px;
 	float:left;
+	font-size:20px;
+	padding-top:2px;
 }
 
 input, textarea
@@ -168,6 +170,19 @@ input, textarea
 	width:600px;
 }
 
+#CaptchaImg
+{
+	float:right;
+	margin:0px;
+	padding:0px;
+	margin-right:44px;
+	box-shadow: none;
+}
+
+#captcha
+{
+	width:200px;
+}
 #ButtonWraper
 {
 	position:relative;
@@ -179,7 +194,7 @@ input, textarea
 	width:100px;
 	height:30px;
 	position:absolute;
-	right:50px;
+	right:44px;
 	
 	color:white;
 	font-size:21px;
@@ -191,7 +206,9 @@ input, textarea
 
 #SendButton:hover
 {
-	background-color:#050505;
+	color:black;
+	background-color:#FFFFFF;
+	box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.9);
 }
 
 textarea

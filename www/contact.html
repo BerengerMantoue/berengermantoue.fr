@@ -24,7 +24,6 @@
 			
 			<section id="Contact">
 				<div>
-					<p>I still got to figure out how to add a captcha thingy.<br/>Until then, this form won't do anything, so you can contact me on berenger dot mantoue at gmail dot com.</p>
 					<form method="post" action="php/sendmail.php" onsubmit="return verifForm(this)">
 						<p>
 							<label for="name">Name</label>
@@ -39,8 +38,14 @@
 							<textarea id="message" name="message" onblur="verifMessage(this)" ></textarea>						
 						</p>
 						
+						<p>
+							<label for="captcha">Human enough ?</label>
+							<input type="text" name="captcha" id="captcha" maxlength="4" onblur="verifCaptcha(this)" />
+							<img src="php/captcha.php" alt="Captcha" id="CaptchaImg" />		
+						</p>
+						
 						<div id="ButtonWraper">
-							<input type="submit" value="Send" id="SendButton"/>
+							<input type="submit" value="S e n d" id="SendButton"/>
 						</div>
 						
 						<script>
@@ -57,8 +62,9 @@
 								var nameOk = verifName(f.name);
 								var mailOk = verifMail(f.email);
 								var msgOk = verifMessage(f.message);
+								var capOk = verifCaptcha(f.captcha);
 
-								if(nameOk && mailOk && msgOk)
+								if(nameOk && mailOk && msgOk && capOk)
 								{						
 									return true;
 								}
@@ -72,6 +78,20 @@
 							function verifName(champ)
 							{
 							   if(champ.value.length < 2 || champ.value.length > 35)
+							   {			
+								  surligne(champ, true);
+								  return false;
+							   }
+							   else
+							   {			
+								  surligne(champ, false);
+								  return true;
+							   }
+							}
+							
+							function verifCaptcha(champ)
+							{
+							   if(champ.value.length != 4)
 							   {			
 								  surligne(champ, true);
 								  return false;

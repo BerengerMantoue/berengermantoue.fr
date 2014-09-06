@@ -1,13 +1,16 @@
-<!DOCTYPE html> 						<!-- Indique qu'on fait une page en html5-->
-<html> 									<!-- Veut dire qu'ici, on parle html. -->
-	<head> 								<!-- Entête de la page (partie technique) -->
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  <!-- Encodage -->
-		<link rel="stylesheet" href="../style.css" /> <!-- Chemin vers le fichier css -->
-		<link rel="shortcut icon" href="../img/icon.ico"> <!-- Icone de l'onglet -->
-		<title>BerengerMantoue.fr</title> 		<!-- Titre pour onglet et google -->
+<?php
+	session_start();
+	
+	$html_start = '<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<link rel="stylesheet" href="../style.css" />
+		<link rel="shortcut icon" href="../img/icon.ico">
+		<title>BerengerMantoue.fr</title>
 	</head>
 
-	<body> <!-- C'est là que ça se passe ... -->		
+	<body>
 		 <div id="global">
 			<header>
 				<a href="../index.html" ><img src="../img/logo.png" alt="logo" id="Logo" /></a>
@@ -23,34 +26,53 @@
 			</header>
 			
 			<section id="SendEmail">
-				<div>
-					<?php
-						//if( isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message']) )
-						//{
-						//	$to      = 'berenger.mantoue@gmail.com';
-						//	$subject = 'Message from '.htmlspecialchars($_POST['name']);							 
-						//	$message = "Pour répondre à cet utilisateur, e-mail : ".htmlspecialchars($_POST['email'])."\r\n\r\n".htmlspecialchars($_POST['message']);
-                        //
-						//	mail($to, $subject, $message);
-                        //
-						//	echo '<h2>Message sent !</h2>';
-						//}
-						//else
-						//{
-						//	if(!isset($_POST['name']) )
-						//		echo '<h2>Name is not filled in.</h2>';
-						//	if(!isset($_POST['email']) )
-						//		echo '<h2>Email is not filled in.</h2>';
-						//	if(!isset($_POST['message']) )
-						//		echo '<h2>Message is not filled in.</h2>';
-						//}
-					?>
-					<h2>Told you it didn't work ...</h2>
-				</div>
+				<div>';
+				
+	$html_middle = '';
+	$html_end = '				</div>
 			</section>
 			
 			<footer>
 			</footer>
 		</div>
 	</body>
-</html>	
+</html>	';
+	
+	// Le champ du code de confirmation a été rempli
+	if(IsSet($_POST['captcha']) AND !Empty($_POST['captcha']))  
+	{ 	
+		// Si le champ est égal au code généré par l'image
+		if($_POST['captcha']==$_SESSION['aleat_nbr']) 
+		{
+			if( isset($_POST['name']) && isset($_POST['email']) && isset($_POST['message']) 
+				&& !Empty($_POST['name']) && !Empty($_POST['email']) && !Empty($_POST['message']))
+			{
+				$to      = 'berenger.mantoue@gmail.com';
+				$subject = 'Message from '.htmlspecialchars($_POST['name']);							 
+				$message = "Pour répondre à cet utilisateur, e-mail : ".htmlspecialchars($_POST['email'])."\r\n\r\n".htmlspecialchars($_POST['message']);
+			
+				mail($to, $subject, $message);
+			
+				$html_middle = '<h2>Message sent !</h2>';
+			}
+			else
+			{
+				if(!isset($_POST['name']) || Empty($_POST['name']))
+					$html_middle = '<h2>Name is not filled in.</h2>';
+				if(!isset($_POST['email']) || Empty($_POST['email']))
+					$html_middle = '<h2>Email is not filled in.</h2>';
+				if(!isset($_POST['message']) || Empty($_POST['message']))
+					$html_middle = '<h2>Message is not filled in.</h2>';
+			}
+		}
+		else 
+		{
+			$html_middle = '<h2>Wrong Captcha. Try again : '.$_POST['captcha'].'</h2>';
+		}
+	}
+	else {
+		$html_middle = '<h2>Captcha is not filled in.</h2>';
+	}
+
+	echo $html_start.$html_middle.$html_end;
+?>
