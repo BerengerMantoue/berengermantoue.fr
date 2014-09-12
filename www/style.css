@@ -147,6 +147,19 @@ section img
 	padding-left: 50px;
 }
 
+#Plugin div
+{
+	font-family:'Arial', 'Trebuchet MS';
+	padding-left: 12px;
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
+
+#Plugin div video, #Plugin div object
+{
+	padding-left: 12px;
+}
+
 #About div h2
 {
 	margin-bottom:15px;
